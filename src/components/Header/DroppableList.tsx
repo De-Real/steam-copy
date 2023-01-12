@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
 
 import orderSelectionIcon from '../../assets/order-selection.svg'
+import { useAppDispatch } from '../../hooks/storeHook';
+import { filterParametersActions } from '../../store/filterParametersSlice';
 
 import './DroppableList.scss'
 
 const DroppableList = () => {
 
 	const [isOpen, setIsOpen] = useState(false);
+
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		const changeStatus = () => {
@@ -30,8 +34,10 @@ const DroppableList = () => {
 		event.nativeEvent.stopImmediatePropagation();
 	}
 
+
+
 	const setFilterParameter = (parameter: 'lowerToBigger' | 'biggerToLower') => {
-		console.log(parameter);
+		dispatch(filterParametersActions.changeDroppableFilterValue(parameter));
 	}
 
 	const classes = `header__order-selection ${isOpen ? 'open' : ''}`

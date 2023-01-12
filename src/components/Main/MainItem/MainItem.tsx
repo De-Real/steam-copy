@@ -29,9 +29,10 @@ const MainItem = ({ id, title, price, date }: { id: number, title: string, price
 					</p>
 				</div>
 			</div>
-			<div className='main-item__play'>
+			{isLiked && <div className='main-item__play'>
 				<img src={playButton} alt='Play game icon'></img>
-			</div>
+			</div>}
+
 		</li>
 	)
 }

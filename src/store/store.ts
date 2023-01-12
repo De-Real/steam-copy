@@ -1,7 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
+import filterParametersReducer from './filterParametersSlice';
+
 export const store = configureStore({
 	reducer: {
+		filterParams: filterParametersReducer,
 	},
 });
 

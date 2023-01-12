@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react'
+import { useAppSelector } from '../../hooks/storeHook';
 import Pagination from '../UI/Pagination';
 import MainItem from './MainItem/MainItem'
 
@@ -40,6 +41,10 @@ const MainItems = () => {
 	const [blogPosts, setBlogPosts] = useState<{ id: number, title: string, price: number, date: string }[]>(DUMMY_ARRAY);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [postsPerPage] = useState(6);
+
+	const { searchingValue, orderFilterValue, droppableFilterValue } = useAppSelector((state) => state.filterParams)
+
+	console.log(searchingValue, orderFilterValue, droppableFilterValue);
 
 
 	// useEffect(() => {
