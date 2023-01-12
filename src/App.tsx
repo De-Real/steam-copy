@@ -1,11 +1,11 @@
 import React from 'react';
-import { Counter } from './features/counter/Counter';
+import RoutesNavigation from './RoutesNavigation';
 
 function App() {
 	return (
 		<div>
-			<Counter />
 			Hello world!
+			<RoutesNavigation />
 		</div>
 	);
 }
