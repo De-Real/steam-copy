@@ -1,0 +1,15 @@
+.header{
+	&__order-filter{
+		& select {
+			font-size: 14px;
+			line-height: 1.2;
+			background: #837F7F;
+			border-radius: 10px;
+			padding: 8px 8px 8px 18px;
+			color: white;
+			& option{
+				color: white;
+			}
+		}
+	}
+}

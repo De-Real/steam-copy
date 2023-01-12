@@ -1,0 +1,16 @@
+.header{
+	&__control{
+		padding: 9px 16px;
+		background: #837F7F;
+		border-radius: 10px;
+
+		display: flex;
+		gap: 10px;
+
+		& button{
+			background: #837F7F;
+			color: white;
+		}
+		
+	}
+}

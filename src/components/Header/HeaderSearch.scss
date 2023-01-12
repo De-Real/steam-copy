@@ -1,0 +1,34 @@
+.header{
+	&__search{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background: #837F7F;
+		border-radius: 10px;
+		flex: 1 1 auto;
+		& input {
+			background-color: transparent;
+			width: 100%;
+			height: 100%;
+			padding: 8px 0 6px 16px;
+			color: white;
+		}
+	
+		
+	& input::placeholder {
+	font-size: 12px;
+	line-height: 1.25;
+	opacity: 1;
+	color: white;
+	}
+	
+		& label {
+		
+			& button {
+				padding-right: 8px;
+				background-color: transparent;
+			}
+		}
+	}
+}
+
