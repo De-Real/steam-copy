@@ -21,7 +21,7 @@ const Header = () => {
 			<div className='header__order-filter'>
 				<select>
 					<option><span>Price</span><span>Img here</span></option>
-					<option><span>Publish Date</span><span>Img here</span></option>
+					<option>Publish date</option>
 				</select>
 			</div>
 			<div className='header__control'>

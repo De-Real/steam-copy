@@ -3,7 +3,8 @@
 	padding-top: 24px;
 	&__items{
 		display: flex;
-		justify-content: space-between;
+		padding: 0 10px;
+		justify-content: flex-start;
 		flex-wrap: wrap;
 		gap: 33px;
 	}

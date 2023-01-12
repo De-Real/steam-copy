@@ -1,0 +1,44 @@
+.pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 50px;
+	gap: 20px;
+
+	& li{
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 28.82px;
+		height: 30px;
+		border-radius: 50%;
+		background: #5B5E63;
+	}
+
+	&__page-number{
+		font-size: 12px;
+		line-height: 1.2;
+		color: white;
+
+	
+		&:hover{
+			color: #fff;
+			background: #30484f;
+		}
+
+		&.choosen{
+			background: #17323A;
+		}
+	}
+}
+
+// .pagination .active {
+// 	color: #fff;
+// 	background: #00a8ff;
+// }
+
+// .pagination .active:hover {
+// 	color: #00a8ff;
+// 	background: #fff;
+// }
