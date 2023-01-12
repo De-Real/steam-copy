@@ -1,12 +1,13 @@
 import React from 'react';
 import RoutesNavigation from './RoutesNavigation';
 
+import './App.scss'
+
 function App() {
 	return (
-		<div>
-			Hello world!
+		<main>
 			<RoutesNavigation />
-		</div>
+		</main>
 	);
 }
 

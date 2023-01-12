@@ -38,7 +38,8 @@ body {
 	-ms-text-size-adjust: 100%;
 	-moz-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
-	background-color: #F5F5F5;
+	background-color: #171A21;
+	color: white;
 	font-family: 'Inter', sans-serif;
 }
 
@@ -79,4 +80,9 @@ h5,
 h6 {
 	font-size: inherit;
 	font-weight: 400;
+}
+
+#root{
+	display: flex;
+	justify-content: center;
 }

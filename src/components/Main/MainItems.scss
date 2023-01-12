@@ -1,0 +1,10 @@
+.main-items{
+	margin: 0 auto;
+	padding-top: 24px;
+	&__items{
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 33px;
+	}
+}

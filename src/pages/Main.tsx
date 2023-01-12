@@ -1,9 +1,12 @@
 import React from 'react'
+import MainItems from '../components/Main/MainItems'
 
 const Main = () => {
-  return (
-	 <div>Main</div>
-  )
+	return (
+		<article>
+			<MainItems />
+		</article>
+	)
 }
 
 export default Main
