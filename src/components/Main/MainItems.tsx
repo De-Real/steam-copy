@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import Pagination from '../UI/Pagination';
 import MainItem from './MainItem/MainItem'
 
@@ -62,9 +62,9 @@ const MainItems = () => {
 	const indexOfFirstPost = indexOfLastPost - postsPerPage;
 	const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
 
-	const paginate = (pageNumber: number) => {
-		setCurrentPage(pageNumber);
-	};
+	const paginate = useCallback((pageNumber: number) => {
+		setCurrentPage(pageNumber)
+	}, []);
 
 
 	return (
@@ -80,6 +80,7 @@ const MainItems = () => {
 			<Pagination postsPerPage={postsPerPage} totalPosts={blogPosts.length} paginate={paginate} currentPage={currentPage} />
 		</section>
 	)
+
 }
 
 export default MainItems

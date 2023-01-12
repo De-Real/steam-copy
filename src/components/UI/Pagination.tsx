@@ -20,7 +20,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: Paginat
 
 	useEffect(() => {
 		paginate(current + 1);
-	}, [current])
+	}, [current, paginate])
 
 	const previousPage = () => {
 		setCurrent((curState) => {
