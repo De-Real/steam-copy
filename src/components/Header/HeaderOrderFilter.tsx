@@ -6,7 +6,7 @@ import './HeaderOrderFilter.scss';
 
 const HeaderOrderFilter = () => {
 
-	const [value, setValue] = useState<string>('none');
+	const [value, setValue] = useState<string>('price');
 
 
 	const dispatch = useAppDispatch();

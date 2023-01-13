@@ -4,18 +4,20 @@ import { useAppSelector } from '../../hooks/storeHook';
 import Pagination from '../UI/Pagination';
 import MainItem from './MainItem/MainItem'
 
+import { filterArray } from '../../util/filterArray';
+
 import './MainItems.scss'
 
 const DUMMY_ARRAY = [
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive1', price: 9.99, date: '25 Aug, 2016' },
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive2', price: 9.99, date: '25 Aug, 2016' },
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive3', price: 9.99, date: '25 Aug, 2016' },
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive4', price: 9.99, date: '25 Aug, 2016' },
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive5', price: 9.99, date: '25 Aug, 2016' },
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive6', price: 11.99, date: '25 Aug, 2016' },
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive7', price: 12.99, date: '25 Aug, 2016' },
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive8', price: 89.99, date: '25 Aug, 2016' },
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive9', price: 913.99, date: '25 Aug, 2016' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive1', price: 9.99, date: '24 Aug, 2016' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive2', price: 9.99, date: '29 Aug, 2017' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive3', price: 9.99, date: '21 Aug, 2016' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive4', price: 9.99, date: '22 Aug, 2017' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive5', price: 9.99, date: '21 Aug, 2016' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive6', price: 11.99, date: '21 Aug, 2016' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive7', price: 12.99, date: '20 Aug, 2016' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive8', price: 89.99, date: '25 Aug, 2018' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive9', price: 913.99, date: '25 Aug, 2019' },
 	{ id: Math.random(), title: 'Counter Strike: Global Offensive10', price: 9321.99, date: '25 Aug, 2016' },
 	{ id: Math.random(), title: 'Counter Strike: Global Offensive11', price: 921.99, date: '25 Aug, 2016' },
 	{ id: Math.random(), title: 'Counter Strike: Global Offensive12', price: 0.99, date: '25 Aug, 2016' },
@@ -49,7 +51,7 @@ const MainItems = () => {
 
 	useEffect(() => {
 		setBlogPosts((currentPosts) => {
-			return currentPosts.sort((a, b) => b.price - a.price);
+			return filterArray(currentPosts, orderFilterValue, droppableFilterValue)
 		})
 	}, [droppableFilterValue, orderFilterValue])
 

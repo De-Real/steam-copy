@@ -1,7 +1,6 @@
+import { orderFilterType } from './../types/filterTypes';
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit'
-
-type orderFilterType = 'lowerToBigger' | 'biggerToLower' | 'none';
 
 interface SearchingParameters {
 	searchingValue: string;
@@ -11,7 +10,7 @@ interface SearchingParameters {
 
 const initialState: SearchingParameters = {
 	searchingValue: '',
-	orderFilterValue: 'none',
+	orderFilterValue: 'price',
 	droppableFilterValue: 'none',
 }
 

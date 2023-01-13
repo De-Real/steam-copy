@@ -4,7 +4,11 @@ import orderSelectionIcon from '../../assets/order-selection.svg'
 import { useAppDispatch } from '../../hooks/storeHook';
 import { filterParametersActions } from '../../store/filterParametersSlice';
 
+import { orderFilterType } from '../../types/filterTypes';
+
 import './DroppableList.scss'
+
+
 
 const DroppableList = () => {
 
@@ -36,7 +40,7 @@ const DroppableList = () => {
 
 
 
-	const setFilterParameter = (parameter: 'lowerToBigger' | 'biggerToLower') => {
+	const setFilterParameter = (parameter: orderFilterType) => {
 		dispatch(filterParametersActions.changeDroppableFilterValue(parameter));
 	}
 
