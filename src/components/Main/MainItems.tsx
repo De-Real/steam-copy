@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/storeHook';
 import Pagination from '../UI/Pagination';
 import MainItem from './MainItem/MainItem'
@@ -11,13 +12,13 @@ const DUMMY_ARRAY = [
 	{ id: Math.random(), title: 'Counter Strike: Global Offensive3', price: 9.99, date: '25 Aug, 2016' },
 	{ id: Math.random(), title: 'Counter Strike: Global Offensive4', price: 9.99, date: '25 Aug, 2016' },
 	{ id: Math.random(), title: 'Counter Strike: Global Offensive5', price: 9.99, date: '25 Aug, 2016' },
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive6', price: 9.99, date: '25 Aug, 2016' },
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive7', price: 9.99, date: '25 Aug, 2016' },
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive8', price: 9.99, date: '25 Aug, 2016' },
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive9', price: 9.99, date: '25 Aug, 2016' },
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive10', price: 9.99, date: '25 Aug, 2016' },
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive11', price: 9.99, date: '25 Aug, 2016' },
-	{ id: Math.random(), title: 'Counter Strike: Global Offensive12', price: 9.99, date: '25 Aug, 2016' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive6', price: 11.99, date: '25 Aug, 2016' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive7', price: 12.99, date: '25 Aug, 2016' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive8', price: 89.99, date: '25 Aug, 2016' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive9', price: 913.99, date: '25 Aug, 2016' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive10', price: 9321.99, date: '25 Aug, 2016' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive11', price: 921.99, date: '25 Aug, 2016' },
+	{ id: Math.random(), title: 'Counter Strike: Global Offensive12', price: 0.99, date: '25 Aug, 2016' },
 	{ id: Math.random(), title: 'Counter Strike: Global Offensive13', price: 9.99, date: '25 Aug, 2016' },
 	{ id: Math.random(), title: 'Counter Strike: Global Offensive14', price: 9.99, date: '25 Aug, 2016' },
 	{ id: Math.random(), title: 'Counter Strike: Global Offensive15', price: 9.99, date: '25 Aug, 2016' },
@@ -40,11 +41,27 @@ const MainItems = () => {
 
 	const [blogPosts, setBlogPosts] = useState<{ id: number, title: string, price: number, date: string }[]>(DUMMY_ARRAY);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage] = useState(6);
+	const [postsPerPage] = useState(12);
 
 	const { searchingValue, orderFilterValue, droppableFilterValue } = useAppSelector((state) => state.filterParams)
 
 	console.log(searchingValue, orderFilterValue, droppableFilterValue);
+
+	useEffect(() => {
+		setBlogPosts((currentPosts) => {
+			return currentPosts.sort((a, b) => b.price - a.price);
+		})
+	}, [droppableFilterValue, orderFilterValue])
+
+	const navigate = useNavigate();
+
+	const { pageNumber } = useParams()
+
+	useEffect(() => {
+		if (pageNumber) {
+			setCurrentPage(+pageNumber);
+		}
+	}, [pageNumber])
 
 
 	// useEffect(() => {
@@ -69,6 +86,7 @@ const MainItems = () => {
 
 	const paginate = useCallback((pageNumber: number) => {
 		setCurrentPage(pageNumber)
+		navigate(`/main/pages/${pageNumber}`)
 	}, []);
 
 

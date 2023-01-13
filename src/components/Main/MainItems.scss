@@ -1,5 +1,8 @@
 .main-items{
-	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
 	padding-top: 24px;
 	&__items{
 		display: flex;
@@ -7,5 +10,6 @@
 		justify-content: flex-start;
 		flex-wrap: wrap;
 		gap: 33px;
+		min-height: 700px;
 	}
 }

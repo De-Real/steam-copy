@@ -4,13 +4,39 @@ import './Pagination.scss'
 
 import leftArrowIcon from '../../assets/icon-pagination-arrow-left.svg'
 import rightArrowIcon from '../../assets/icon-pagination-arrow-right.svg'
+import { useParams } from 'react-router-dom';
 
 interface PaginationPropsInterface { postsPerPage: number, totalPosts: number, currentPage: number, paginate: (pageNumber: number) => void }
 
 
 const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: PaginationPropsInterface) => {
 
-	const [current, setCurrent] = useState(0);
+	console.log('CP', currentPage);
+
+	const { pageNumber } = useParams();
+
+	const [current, setCurrent] = useState(4);
+	const [isForced, setIsForced] = useState(true);
+
+	useEffect(() => {
+		if (isForced && pageNumber) {
+			setCurrent(+pageNumber - 1);
+			setIsForced(false);
+		}
+
+	}, [pageNumber]);
+
+	useEffect(() => {
+		console.log('CURRENT', `${current}`);
+	}, [current]);
+
+	// useEffect(() => {
+	// 	if (isForced) {
+	// 		console.log('FORCEEEEEEEEEED!!!!', currentPage)
+	// 		setCurrent(currentPage - 1);
+	// 		setIsForced(false);
+	// 	}
+	// }, [currentPage, current, isForced]);
 
 	const pageNumbers: number[] = [];
 
@@ -19,7 +45,13 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: Paginat
 	}
 
 	useEffect(() => {
-		paginate(current + 1);
+		if (isForced) {
+
+		} else {
+			paginate(current + 1);
+			setIsForced(false);
+		}
+
 	}, [current, paginate])
 
 	const previousPage = () => {
@@ -36,6 +68,8 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: Paginat
 			return min > maxArrayLenght ? maxArrayLenght : min;
 		})
 	};
+
+	console.log(current, current + 3);
 
 	const slicedPageNumbers = pageNumbers.slice(current, current + 3)
 

@@ -9,9 +9,14 @@ const RoutesNavigation = () => {
 	return (
 		<Routes>
 			<Route path='/' element={<Header />}>
-				<Route index element={<Navigate to='/main' />} />
-				<Route path='/main/' element={<Main />} />
-				<Route path='/main/detailed/:itemId' element={<DetailedItem />} />
+				<Route index element={<Navigate to='/main/pages/1' />} />
+				<Route path='/main'>
+					<Route index element={<Navigate to='/main/pages/1' />} />
+					<Route path='pages/' element={<Navigate to='/main/pages/1' />} />
+					<Route path='pages/:pageNumber' element={<Main />} />
+					<Route path='detailed/:itemId' element={<DetailedItem />} />
+				</Route>
+
 				<Route path='*' element={<NotFound />} />
 			</Route>
 		</Routes>
