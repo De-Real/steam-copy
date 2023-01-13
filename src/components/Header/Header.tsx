@@ -16,9 +16,11 @@ const Header = () => {
 			<Link to='/main/pages/1'>
 				<img className='header__logo' src={logoIcon} alt='Logo icon' />
 			</Link>
-			<HeaderSearch />
-			<DroppableList />
-			<HeaderOrderFilter />
+			<div className='header__flex-wrapper'>
+				<HeaderSearch />
+				<DroppableList />
+				<HeaderOrderFilter />
+			</div>
 			<HeaderControl />
 		</header>
 	)

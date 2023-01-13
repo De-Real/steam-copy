@@ -3,14 +3,30 @@
 		padding: 9px 16px;
 		background: #837F7F;
 		border-radius: 10px;
-
 		display: flex;
 		gap: 10px;
 
 		& button{
 			background: #837F7F;
 			color: white;
+			min-width: 50px;
 		}
 		
+	}
+
+}
+
+@media (max-width: 860px) {
+	.header__control{
+		order: 2;
+		display: flex;
+		flex: 1 1 auto;
+		gap: 20px;
+	}
+}
+
+@media (max-width: 560px) {
+	.header__control{
+		padding: 7px 12px;
 	}
 }

@@ -1,11 +1,44 @@
 .header{
-
 	display: flex;
 	gap: 12px;
-
 	padding: 33px 0;
+	width: 100%;
 
-	
+	&__flex-wrapper{
+		display: flex;
+		flex: 1 1 auto;
+		gap: 12px;
+	}
+}
 
-	
+
+@media (max-width: 860px) {
+	.header{
+		flex-wrap: wrap;
+		& a{
+			order: 1;
+			flex: 1 1 auto;
+		}
+
+		&__flex-wrapper{
+			order: 3;
+		}
+	}
+}
+
+@media (max-width: 560px){
+	.header {
+		& a{
+			flex: 0 1 auto;
+		}
+	}
+	.header__flex-wrapper{
+		flex-wrap: wrap;
+	}
+}
+
+@media (max-width: 560px){
+	.header{
+		padding: 15px 5px 5px 5px;
+	}
 }

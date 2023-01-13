@@ -8,6 +8,14 @@ import { filterArray } from '../../util/filterArray';
 
 import './MainItems.scss'
 
+const scrollTop = () => {
+	window.scrollTo({
+		top: 0,
+		left: 0,
+		behavior: 'smooth',
+	})
+}
+
 const MainItems = () => {
 
 
@@ -45,7 +53,7 @@ const MainItems = () => {
 
 	const [blogPosts, setBlogPosts] = useState<{ id: number, title: string, price: number, date: string }[]>(DUMMY_ARRAY);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage] = useState(3);
+	const [postsPerPage] = useState(8);
 
 	const { searchingValue, orderFilterValue, droppableFilterValue } = useAppSelector((state) => state.filterParams)
 	const { products, status } = useAppSelector((state) => state.products);
@@ -74,6 +82,7 @@ const MainItems = () => {
 	const paginate = useCallback((pageNumber: number) => {
 		setCurrentPage(pageNumber)
 		navigate(`/main/pages/${pageNumber}`)
+		scrollTop();
 	}, []);
 
 	return (
