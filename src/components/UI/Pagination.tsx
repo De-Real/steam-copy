@@ -1,42 +1,17 @@
 import React, { useEffect, useState } from 'react';
-
-import './Pagination.scss'
-
 import leftArrowIcon from '../../assets/icon-pagination-arrow-left.svg'
 import rightArrowIcon from '../../assets/icon-pagination-arrow-right.svg'
 import { useParams } from 'react-router-dom';
+import './Pagination.scss'
 
 interface PaginationPropsInterface { postsPerPage: number, totalPosts: number, currentPage: number, paginate: (pageNumber: number) => void }
 
-
 const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: PaginationPropsInterface) => {
-
-	console.log('CP', currentPage);
 
 	const { pageNumber } = useParams();
 
-	const [current, setCurrent] = useState(4);
+	const [current, setCurrent] = useState(0);
 	const [isForced, setIsForced] = useState(true);
-
-	useEffect(() => {
-		if (isForced && pageNumber) {
-			setCurrent(+pageNumber - 1);
-			setIsForced(false);
-		}
-
-	}, [pageNumber]);
-
-	useEffect(() => {
-		console.log('CURRENT', `${current}`);
-	}, [current]);
-
-	// useEffect(() => {
-	// 	if (isForced) {
-	// 		console.log('FORCEEEEEEEEEED!!!!', currentPage)
-	// 		setCurrent(currentPage - 1);
-	// 		setIsForced(false);
-	// 	}
-	// }, [currentPage, current, isForced]);
 
 	const pageNumbers: number[] = [];
 
@@ -45,14 +20,30 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: Paginat
 	}
 
 	useEffect(() => {
-		if (isForced) {
 
-		} else {
+		if (!pageNumber) {
+			return;
+		}
+
+		if (+pageNumber > pageNumbers.length) {
+			setCurrent(0);
+			paginate(1);
+		} else if (isForced) {
+			if (+pageNumber + 2 >= pageNumbers.length) {
+				setCurrent(+pageNumber - 2);
+			} else {
+				setCurrent(+pageNumber - 1);
+				setIsForced(false);
+			}
+		}
+	}, [pageNumber, isForced, pageNumbers?.length, paginate]);
+
+	useEffect(() => {
+		if (!isForced) {
 			paginate(current + 1);
 			setIsForced(false);
 		}
-
-	}, [current, paginate])
+	}, [current, paginate, isForced])
 
 	const previousPage = () => {
 		setCurrent((curState) => {
@@ -63,13 +54,14 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: Paginat
 
 	const nextPage = () => {
 		setCurrent((curState) => {
+			if (pageNumbers.length <= 3) {
+				return curState;
+			}
 			const min = curState + 3;
 			const maxArrayLenght = pageNumbers.length - 3;
 			return min > maxArrayLenght ? maxArrayLenght : min;
 		})
 	};
-
-	console.log(current, current + 3);
 
 	const slicedPageNumbers = pageNumbers.slice(current, current + 3)
 
