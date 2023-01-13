@@ -10,6 +10,8 @@ import './MainItems.scss'
 
 const MainItems = () => {
 
+
+
 	const DUMMY_ARRAY = useMemo(() => [
 		{ id: Math.random(), title: 'Counter Strike: Global Offensive1', price: 9.99, date: '24 Aug, 2016' },
 		{ id: Math.random(), title: 'Counter Strike: Global Offensive2', price: 9.99, date: '29 Aug, 2017' },
@@ -46,6 +48,7 @@ const MainItems = () => {
 	const [postsPerPage] = useState(3);
 
 	const { searchingValue, orderFilterValue, droppableFilterValue } = useAppSelector((state) => state.filterParams)
+	const { products, status } = useAppSelector((state) => state.products);
 
 	useEffect(() => {
 		let temp = [...DUMMY_ARRAY];

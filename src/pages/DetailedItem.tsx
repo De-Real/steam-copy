@@ -1,8 +1,9 @@
 import React from 'react'
+import ItemDetails from '../components/DetailedItem/ItemDetails'
 
 const DetailedItem = () => {
 	return (
-		<article>DetailedItem</article>
+		<article><ItemDetails /></article>
 	)
 }
 
