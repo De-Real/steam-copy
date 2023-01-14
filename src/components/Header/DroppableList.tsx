@@ -8,8 +8,6 @@ import { orderFilterType } from '../../types/filterTypes';
 
 import './DroppableList.scss'
 
-
-
 const DroppableList = () => {
 
 	const [isOpen, setIsOpen] = useState(false);
@@ -38,8 +36,6 @@ const DroppableList = () => {
 		event.nativeEvent.stopImmediatePropagation();
 	}
 
-
-
 	const setFilterParameter = (parameter: orderFilterType) => {
 		dispatch(filterParametersActions.changeDroppableFilterValue(parameter));
 	}
@@ -47,16 +43,13 @@ const DroppableList = () => {
 	const classes = `header__order-selection ${isOpen ? 'open' : ''}`
 
 	return (
-
 		<div className={classes} onClick={manageOpening}>
-			{/* droppable list here on click */}
 			<img src={orderSelectionIcon} alt='Droppable icon' />
 			{isOpen ? <div className='header__droppable'>
 				<p onClick={setFilterParameter.bind(null, 'lowerToBigger')}> Lower to bigger </p>
 				<p onClick={setFilterParameter.bind(null, 'biggerToLower')}> Bigger to lower </p>
 			</div> : ''}
 		</div>
-
 	)
 }
 

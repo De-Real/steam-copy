@@ -4,7 +4,6 @@ import searchIcon from '../../assets/icon-search.svg'
 import { useAppDispatch } from '../../hooks/storeHook';
 import { filterParametersActions } from '../../store/filterParametersSlice';
 
-
 import './HeaderSearch.scss'
 
 const HeaderSearch = () => {

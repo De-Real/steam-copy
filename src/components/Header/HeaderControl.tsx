@@ -5,6 +5,7 @@ import './HeaderControl.scss'
 const HeaderControl = () => {
 	return (
 		<div className='header__control'>
+			{/* {What should they do???} */}
 			<button>
 				Search
 			</button>

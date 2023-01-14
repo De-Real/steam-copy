@@ -8,8 +8,8 @@ const HeaderOrderFilter = () => {
 
 	const [value, setValue] = useState<string>('price');
 
-
 	const dispatch = useAppDispatch();
+	
 	const valueChange = (event: React.FormEvent<HTMLSelectElement>) => {
 		setValue(event.currentTarget.value);
 		dispatch(filterParametersActions.changeOrderFilterValue(event.currentTarget.value))

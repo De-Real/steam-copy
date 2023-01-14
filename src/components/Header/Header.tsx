@@ -1,18 +1,17 @@
-import React from 'react'
-import logoIcon from '../../assets/logo.svg'
-import { Link } from 'react-router-dom'
-
-
-import DroppableList from './DroppableList'
-import './Header.scss'
 import HeaderControl from './HeaderControl'
 import HeaderOrderFilter from './HeaderOrderFilter'
 import HeaderSearch from './HeaderSearch'
+import DroppableList from './DroppableList'
+
+import './Header.scss'
+
+import { Link } from 'react-router-dom'
+
+import logoIcon from '../../assets/logo.svg'
 
 const Header = () => {
 	return (
 		<header className='header'>
-
 			<Link to='/main/pages/1'>
 				<img className='header__logo' src={logoIcon} alt='Logo icon' />
 			</Link>

@@ -37,10 +37,7 @@ const ItemDetails = () => {
 
 	}, [itemId])
 
-
 	return (
-
-
 		<section className='item-details'>
 			{error && <p>Error occured, reason: {error}</p>}
 			{isLoading && <p>Loading...</p>}
