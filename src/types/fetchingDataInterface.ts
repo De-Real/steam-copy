@@ -8,3 +8,26 @@ export interface FetchingData {
 	url: string;
 	liked?: boolean;
 }
+
+export interface DetailedFetchingData {
+	imgUrl: string;
+	title: string;
+	developer: {
+		link: string;
+		name: string;
+	}
+	publisher: {
+		link: string;
+		name: string;
+	}
+	released: string;
+	description: string;
+	tags: [
+		{
+			url: string;
+			name: string
+		}
+	]
+	summary: string;
+	price: string;
+}
