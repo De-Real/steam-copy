@@ -94,7 +94,7 @@ const MainItems = () => {
 				{error.length > 0 && <p>{error}</p>}
 				{!isLoading && error.length === 0 && <ul className='main-items__items'>
 					{currentPosts.map((item) => {
-						return <MainItem key={item.appId + Math.random()} product={item} />
+						return <MainItem key={Math.random()} product={item} />
 					})}
 				</ul>}
 			</div>

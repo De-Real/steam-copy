@@ -26,4 +26,8 @@
 	.header__order-selection{
 		order: 4;
 	}
+
+	.header__order-selection.open .header__droppable{
+		left: -105px;
+	}
 }
