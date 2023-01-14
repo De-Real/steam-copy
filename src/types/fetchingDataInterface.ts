@@ -6,4 +6,5 @@ export interface FetchingData {
 	reviewSummary: string;
 	title: string;
 	url: string;
+	liked?: boolean;
 }

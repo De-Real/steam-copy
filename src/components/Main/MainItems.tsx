@@ -24,7 +24,7 @@ const MainItems = () => {
 	const [error, setError] = useState('');
 
 	const { searchingValue, orderFilterValue, droppableFilterValue } = useAppSelector((state) => state.filterParams)
-
+	const { likedList } = useAppSelector((state) => state.likedList);
 	const navigate = useNavigate();
 	const { pageNumber } = useParams()
 
@@ -52,10 +52,25 @@ const MainItems = () => {
 		fetchData();
 	}, [currentPage, searchingValue])
 
+	// useEffect(() => {
+	// 	setInitialPosts(curState => {
+	// 		return curState.map((product) => {
+	// 			console.log(likedList);
+	// 			if (likedList.includes(product.appId)) return { ...product, liked: true }
+	// 			return product;
+	// 		}
+	// 		)
+	// 	}
+	// 	)
+	// }, [])
+
 
 	useEffect(() => {
-		setBlogPosts(filterArray([...initialPosts], orderFilterValue, droppableFilterValue));
+		let filteredArray = filterArray([...initialPosts], orderFilterValue, droppableFilterValue);
+		setBlogPosts(filteredArray);
 	}, [droppableFilterValue, orderFilterValue, initialPosts])
+
+
 
 	useEffect(() => {
 		if (pageNumber) {
@@ -80,7 +95,7 @@ const MainItems = () => {
 				{error.length > 0 && <p>{error}</p>}
 				{!isLoading && error.length === 0 && <ul className='main-items__items'>
 					{currentPosts.map((item) => {
-						return <MainItem key={item.appId} product={item} />
+						return <MainItem key={item.appId + Math.random()} product={item} />
 					})}
 				</ul>}
 			</div>
