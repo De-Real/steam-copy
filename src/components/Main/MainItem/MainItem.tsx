@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from 'react'
+import {useNavigate } from 'react-router-dom'
+import { likedListActions } from '../../../store/likedListSlice'
+import { useAppDispatch, useAppSelector } from '../../../hooks/storeHook'
+
+import { FetchingData } from '../../../types/fetchingDataInterface'
 
 import './MainItem.scss'
 
 import iconUnliked from '../../../assets/icon-unliked.svg'
 import iconLiked from '../../../assets/icon-liked.svg'
 import playButton from '../../../assets/play-button.svg'
-import { Link, useNavigate } from 'react-router-dom'
-import { FetchingData } from '../../../types/fetchingDataInterface'
-import { useAppDispatch, useAppSelector } from '../../../hooks/storeHook'
-import { likedListActions } from '../../../store/likedListSlice'
 
 const MainItem = ({ product }: { product: FetchingData }) => {
 
 	const [isLiked, setIsLiked] = useState(false);
 
 	const dispatch = useAppDispatch();
-	const { likedList } = useAppSelector(state => state.likedList)
 
+	const navigate = useNavigate();
+
+	const { likedList } = useAppSelector(state => state.likedList)
 
 	useEffect(() => {
 		if (likedList.includes(product.appId)) {
 			setIsLiked(true);
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	const isLikedChangeHandler = () => {
@@ -37,8 +41,6 @@ const MainItem = ({ product }: { product: FetchingData }) => {
 			return changedState;
 		});
 	}
-
-	const navigate = useNavigate();
 
 	const openDetailed = () => {
 		navigate(`/main/detailed/${product.appId}`)
