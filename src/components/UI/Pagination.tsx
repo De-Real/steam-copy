@@ -15,7 +15,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: Paginat
 
 	const pageNumbers: number[] = [];
 
-	for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+	for (let i = 1; i <= 20; i++) {
 		pageNumbers.push(i);
 	}
 

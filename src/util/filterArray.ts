@@ -4,26 +4,52 @@ import { orderFilterType } from './../types/filterTypes';
 const biggerToLowerSort = (sortingDataType: 'price' | 'publish-date') => {
 	if (sortingDataType === 'price') {
 		return (a: any, b: any): number => {
-			if (a.price < b.price) return 1;
-			return -1;
+			const priceA = parseFloat(a.price);
+			const priceB = parseFloat(b.price);
+
+			if (isNaN(priceA)) {
+				return 1
+			} else if (isNaN(priceB)) {
+				return -1;
+			} else if (priceA < priceB) {
+				return 1;
+			} else return -1;
 		}
-	} else {
+	}
+
+	else {
 		return (a: any, b: any) => {
-			if (new Date(a) < new Date(b)) return 1;
+			const dateA = Date.parse(a.released);
+			const dateB = Date.parse(b.released);
+
+			if (isNaN(dateA)) return 1;
+			if (isNaN(dateB)) return -1;
+
+			if (dateA < dateB) return 1;
 			return -1;
 		}
 	}
 }
 
+
 const lowerToBiggerSort = (sortingDataType: 'price' | 'publish-date') => {
 	if (sortingDataType === 'price') {
 		return (a: any, b: any) => {
-			if (a.price > b.price) return 1;
-			return -1;
+			const priceA = parseFloat(a.price);
+			const priceB = parseFloat(b.price);
+
+			if (isNaN(priceA)) {
+				return -1;
+			} else if (isNaN(priceB)) {
+				return 1;
+			} else if (priceA < priceB) {
+				return -1;
+			} else return 1;
 		}
 	} else {
 		return (a: any, b: any) => {
-			if (a > b) return 1;
+			console.log('CALLED!!!');
+			if (Date.parse(a.released) > Date.parse(b.released)) return 1;
 			return -1;
 		}
 	}

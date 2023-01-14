@@ -9,7 +9,7 @@ interface SearchingParameters {
 }
 
 const initialState: SearchingParameters = {
-	searchingValue: '',
+	searchingValue: 'counter',
 	orderFilterValue: 'price',
 	droppableFilterValue: 'none',
 }

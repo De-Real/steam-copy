@@ -7,6 +7,7 @@ import MainItem from './MainItem/MainItem'
 import { filterArray } from '../../util/filterArray';
 
 import './MainItems.scss'
+import { FetchingData } from '../../types/fetchingDataInterface';
 
 const scrollTop = () => {
 	window.scrollTo({
@@ -18,52 +19,46 @@ const scrollTop = () => {
 
 const MainItems = () => {
 
-
-
-	const DUMMY_ARRAY = useMemo(() => [
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive1', price: 9.99, date: '24 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive2', price: 9.99, date: '29 Aug, 2017' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive3', price: 9.99, date: '21 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive4', price: 9.99, date: '22 Aug, 2017' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive5', price: 9.99, date: '21 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive6', price: 11.99, date: '21 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive7', price: 12.99, date: '20 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive8', price: 89.99, date: '25 Aug, 2018' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive9', price: 913.99, date: '25 Aug, 2019' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive10', price: 9321.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive11', price: 921.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive12', price: 0.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive13', price: 9.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive14', price: 9.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive15', price: 9.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive16', price: 9.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive17', price: 9.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive18', price: 9.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive19', price: 9.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive20', price: 9.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive21', price: 9.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive22', price: 9.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive23', price: 9.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive24', price: 9.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive25', price: 9.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive26', price: 9.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive27', price: 9.99, date: '25 Aug, 2016' },
-		{ id: Math.random(), title: 'Counter Strike: Global Offensive28', price: 9.99, date: '25 Aug, 2016' },
-	], [])
-
-	const [blogPosts, setBlogPosts] = useState<{ id: number, title: string, price: number, date: string }[]>(DUMMY_ARRAY);
+	// const DUMMY_ARRAY = useAppSelector((state) => state.products.products);
+	const [initialPosts, setInitialPosts] = useState<FetchingData[]>([]);
+	const [blogPosts, setBlogPosts] = useState<FetchingData[]>([]);
 	const [currentPage, setCurrentPage] = useState(1);
-	const [postsPerPage] = useState(8);
+	const [postsPerPage] = useState(25);
 
 	const { searchingValue, orderFilterValue, droppableFilterValue } = useAppSelector((state) => state.filterParams)
-	const { products, status } = useAppSelector((state) => state.products);
 
 	useEffect(() => {
-		let temp = [...DUMMY_ARRAY];
-		temp = temp.filter((item) => item.title.includes(searchingValue))
+
+		const options = {
+			method: 'GET',
+			headers: {
+				'X-RapidAPI-Key': '7c5ef87773msh1ba3465dbccadb6p1e9a59jsnbe646dae5f80',
+				'X-RapidAPI-Host': 'steam2.p.rapidapi.com'
+			}
+		};
+
+		const fetchData = async () => {
+			const response = await fetch(`https://steam2.p.rapidapi.com/search/${searchingValue}/page/${currentPage}`, options);
+
+			if (!response.ok) {
+				throw new Error('Error!!!');
+			}
+
+			const results = await response.json(); 
+			console.log(results);
+			setInitialPosts(results);
+		}
+		fetchData();
+	}, [currentPage, searchingValue])
+
+
+	useEffect(() => {
+		let temp = [...initialPosts];
+		console.log(temp)
 		temp = filterArray(temp, orderFilterValue, droppableFilterValue)
+		console.log(temp)
 		setBlogPosts(temp);
-	}, [droppableFilterValue, orderFilterValue, searchingValue, DUMMY_ARRAY])
+	}, [droppableFilterValue, orderFilterValue, initialPosts])
 
 	const navigate = useNavigate();
 
@@ -75,9 +70,9 @@ const MainItems = () => {
 		}
 	}, [pageNumber])
 
-	const indexOfLastPost = currentPage * postsPerPage;
-	const indexOfFirstPost = indexOfLastPost - postsPerPage;
-	const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
+	// const indexOfLastPost = currentPage * postsPerPage;
+	// const indexOfFirstPost = indexOfLastPost - postsPerPage;
+	const currentPosts = [...blogPosts]
 
 	const paginate = useCallback((pageNumber: number) => {
 		setCurrentPage(pageNumber)
@@ -87,14 +82,22 @@ const MainItems = () => {
 
 	return (
 		<section className='main-items'>
-			<div>
-				<ul className='main-items__items'>
-					{currentPosts.map((item) => {
-						return <MainItem key={item.id} id={item.id} title={item.title} date={item.date} price={item.price} />
 
-					})}
-				</ul>
+
+			<div>
+				{Boolean(currentPosts.length) &&
+					<ul className='main-items__items'>
+						{currentPosts.map((item) => {
+							return <MainItem key={item.appId} product={item} />
+						})}
+					</ul>
+				}
+				{!currentPosts.length && <p> No data found!</p>}
+
 			</div>
+
+
+
 			<Pagination postsPerPage={postsPerPage} totalPosts={blogPosts.length} paginate={paginate} currentPage={currentPage} />
 		</section>
 	)

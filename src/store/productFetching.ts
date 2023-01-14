@@ -1,3 +1,4 @@
+import { FetchingData } from './../types/fetchingDataInterface';
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const options = {
@@ -9,15 +10,16 @@ const options = {
 };
 
 export const loadProducts = createAsyncThunk("products/loadProducts", async () => {
-	const response = await fetch('https://jsonplaceholder.typicode.com/todos');
 
-	if (!response.ok) {
-		throw new Error("Error");
-	}
+	// const response = await fetch('https://steam2.p.rapidapi.com/search/Game/page/1', options);
 
-	const data = await response.json();
+	// if (!response.ok) {
+	// 	throw new Error("Error");
+	// }
 
-	console.log(data);
+	// const data: FetchingData[] = await response.json();
 
-	return data;
+	// console.log(data);
+
+	// return data;
 });
