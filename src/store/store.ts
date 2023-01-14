@@ -2,13 +2,12 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
 import filterParametersReducer from './filterParametersSlice';
 import likedListReducer from './likedListSlice';
-import productReducer from './productSlice';
-
+// import productReducer from './productSlice';
 
 export const store = configureStore({
 	reducer: {
 		filterParams: filterParametersReducer,
-		products: productReducer,
+		// products: productReducer,
 		likedList: likedListReducer,
 	},
 });

@@ -1,6 +1,5 @@
 import { orderFilterType } from './../types/filterTypes';
 
-
 const biggerToLowerSort = (sortingDataType: 'price' | 'publish-date') => {
 	if (sortingDataType === 'price') {
 		return (a: any, b: any): number => {
@@ -15,9 +14,7 @@ const biggerToLowerSort = (sortingDataType: 'price' | 'publish-date') => {
 				return 1;
 			} else return -1;
 		}
-	}
-
-	else {
+	} else {
 		return (a: any, b: any) => {
 			const dateA = Date.parse(a.released);
 			const dateB = Date.parse(b.released);
@@ -30,7 +27,6 @@ const biggerToLowerSort = (sortingDataType: 'price' | 'publish-date') => {
 		}
 	}
 }
-
 
 const lowerToBiggerSort = (sortingDataType: 'price' | 'publish-date') => {
 	if (sortingDataType === 'price') {

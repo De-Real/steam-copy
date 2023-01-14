@@ -1,45 +1,49 @@
-import { FetchingData } from './../types/fetchingDataInterface';
-import { loadProducts } from './productFetching';
-import { createSlice } from "@reduxjs/toolkit";
+export { };
 
-interface InitialStateInterface {
-	products: FetchingData[];
-	status: 'idle' | 'pending' | 'succeeded' | 'failed';
-}
+//POTENTIALLY CAN BE USED TO FETCH DATA AND IT WAS INITIALLY CREATED TO DO IT
 
-const initialState: InitialStateInterface = {
-	products: [],
-	status: 'idle',
-};
+// import { FetchingData } from './../types/fetchingDataInterface';
+// import { loadProducts } from './productFetching';
+// import { createSlice } from "@reduxjs/toolkit";
 
-const productListSlice = createSlice({
-	name: "products",
-	initialState,
-	reducers: {},
-	// extraReducers:
-	// 	(builder) => {
-	// 		builder.addCase(loadProducts.fulfilled, (state, action) => {
-	// 			state.status = 'succeeded';
-	// 			console.log(action.payload);
-	// 			console.log(action.payload);
-	// 			state.products = action.payload;
-	// 		});
+// interface InitialStateInterface {
+// 	products: FetchingData[];
+// 	status: 'idle' | 'pending' | 'succeeded' | 'failed';
+// }
 
-	// 		builder.addCase(loadProducts.pending, (state) => {
-	// 			state.status = 'pending';
-	// 		});
+// const initialState: InitialStateInterface = {
+// 	products: [],
+// 	status: 'idle',
+// };
 
-	// 		builder.addCase(loadProducts.rejected, (state) => {
-	// 			state.status = 'failed';
-	// 		});
-	// 	}
+// const productListSlice = createSlice({
+// 	name: "products",
+// 	initialState,
+// 	reducers: {},
+// 	// extraReducers:
+// 	// 	(builder) => {
+// 	// 		builder.addCase(loadProducts.fulfilled, (state, action) => {
+// 	// 			state.status = 'succeeded';
+// 	// 			console.log(action.payload);
+// 	// 			console.log(action.payload);
+// 	// 			state.products = action.payload;
+// 	// 		});
 
-	// [loadProducts.fulfilled]: (state, { payload }) => {
-	// 	state.jobItems = payload || [];
-	// },
+// 	// 		builder.addCase(loadProducts.pending, (state) => {
+// 	// 			state.status = 'pending';
+// 	// 		});
 
-});
+// 	// 		builder.addCase(loadProducts.rejected, (state) => {
+// 	// 			state.status = 'failed';
+// 	// 		});
+// 	// 	}
 
-export const jobListActions = productListSlice.actions;
+// 	// [loadProducts.fulfilled]: (state, { payload }) => {
+// 	// 	state.jobItems = payload || [];
+// 	// },
 
-export default productListSlice.reducer;
+// });
+
+// export const jobListActions = productListSlice.actions;
+
+// export default productListSlice.reducer;
