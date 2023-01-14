@@ -24,7 +24,6 @@ const MainItems = () => {
 	const [error, setError] = useState('');
 
 	const { searchingValue, orderFilterValue, droppableFilterValue } = useAppSelector((state) => state.filterParams)
-	const { likedList } = useAppSelector((state) => state.likedList);
 	const navigate = useNavigate();
 	const { pageNumber } = useParams()
 
